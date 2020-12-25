@@ -32,6 +32,7 @@ ResetVector:
     
 NMHandler:
     .word _NMHandler
+    adsdasddsdadasd
 
 
     
