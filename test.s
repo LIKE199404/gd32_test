@@ -6,10 +6,10 @@
     .global g_pfnVectors
     .extern InitData
 
-    .section .text.ReseHandler
-    .weak ReseHandler
-    .type ReseHandler,%function
-ReseHandler:
+    .section .text.ResetHandler
+    .weak ResetHandler
+    .type ResetHandler,%function
+ResetHandler:
     bl InitData
     bl SystemInit
     bl __libc_init_array
@@ -27,12 +27,24 @@ HardFaultHandler:
 
     .section .isr_vector,"a",%progbits
     .type ResetVector,%object
-ResetVector:
-    .word .g_estack
-    
-NMHandler:
-    .word _NMHandler
-    adsdasddsdadasd
-sdfsadasdasdasdasdasd
 
+ResetVector:
+    .word g_estack
     
+NMIHandler:
+    .word _NMHIandler
+
+SVCHandler:
+    .word _SVCHandler
+
+PendSVHamdler:
+    .word _PendSVHamdler
+
+_NMHIandler:
+    b __NMHIandler
+
+_SVCHandler:
+    b _SVCHandler
+
+_PendSVHamdler:
+    b _PendSVHamdler
